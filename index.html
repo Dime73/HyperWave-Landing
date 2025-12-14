@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #0a0a0a;
+            background: linear-gradient(to bottom, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
             color: #e0e0e0;
             line-height: 1.6;
         }
@@ -32,7 +32,10 @@
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 20px;
-            color: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         h2 {
@@ -64,8 +67,9 @@
             max-width: 100%;
             height: auto;
             margin: 40px 0;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3), 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
         .cta-button {
@@ -74,11 +78,18 @@
             font-size: 1.125rem;
             font-weight: 600;
             color: #ffffff;
-            background-color: #333333;
-            border: 2px solid #555555;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
             text-decoration: none;
             margin-top: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
         }
 
         .cta-button:disabled {
@@ -87,7 +98,7 @@
         }
 
         .sound-section {
-            background-color: #0f0f0f;
+            background: linear-gradient(to right, #0f0f0f 0%, #1a0a2e 50%, #0f0f0f 100%);
         }
 
         .sound-section p:last-child {
@@ -103,6 +114,11 @@
         .why-section li {
             padding: 20px 0;
             border-bottom: 1px solid #1a1a1a;
+            transition: padding-left 0.2s ease;
+        }
+
+        .why-section li:hover {
+            padding-left: 10px;
         }
 
         .why-section li:last-child {
@@ -112,7 +128,10 @@
         .why-section li strong {
             display: block;
             font-size: 1.25rem;
-            color: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 8px;
         }
 
@@ -122,7 +141,7 @@
         }
 
         .compatibility-section {
-            background-color: #0f0f0f;
+            background: linear-gradient(to right, #0f0f0f 0%, #1a0a2e 50%, #0f0f0f 100%);
         }
 
         .compatibility-grid {
@@ -134,9 +153,16 @@
 
         .compatibility-item {
             padding: 20px;
-            background-color: #1a1a1a;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a3a 100%);
+            border-radius: 8px;
             text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .compatibility-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
         .compatibility-item strong {
@@ -149,6 +175,24 @@
         .compatibility-item span {
             color: #888888;
             font-size: 0.875rem;
+        }
+
+        .audio-player {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a3a 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        audio {
+            width: 100%;
+            height: 40px;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         footer {
@@ -222,7 +266,13 @@
         <div class="container">
             <h2>Sound</h2>
             <p>HyperWave delivers Virus TI–style thick supersaws with a streamlined interface designed for speed. No complexity, no distractions — just massive, hardstyle-ready sound at your fingertips.</p>
-            <p>Audio demo coming soon</p>
+            <div class="audio-player">
+                <audio controls>
+                    <source src="demo.mp3" type="audio/mpeg">
+                    <source src="demo.ogg" type="audio/ogg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
         </div>
     </section>
 
@@ -256,7 +306,7 @@
             <div class="compatibility-grid">
                 <div class="compatibility-item">
                     <strong>Platform</strong>
-                    <span>macOS</span>
+                    <span>macOS & Windows</span>
                 </div>
                 <div class="compatibility-item">
                     <strong>Formats</strong>
@@ -269,7 +319,6 @@
     <footer>
         <div class="container">
             <p>In development</p>
-            <p><a href="mailto:hello@hyperwaveaudio.com">hello@hyperwaveaudio.com</a></p>
         </div>
     </footer>
 </body>
