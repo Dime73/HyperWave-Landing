@@ -586,7 +586,7 @@
             const modal = document.getElementById('waitlistModal');
             modal.classList.remove('active');
             
-            // Reset form after a brief delay
+            // Reset form after a brief delay to allow the modal close animation to complete
             setTimeout(() => {
                 document.getElementById('formContent').style.display = 'block';
                 document.getElementById('successContent').style.display = 'none';
@@ -616,8 +616,8 @@
             emailInput.classList.remove('error');
             emailError.classList.remove('active');
             
-            // Store email (in real app, this would send to backend)
-            console.log('Waitlist signup:', email);
+            // TODO: Send email to backend API
+            // Example: fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email }) })
             
             // Show success message
             document.getElementById('submittedEmail').textContent = email;
