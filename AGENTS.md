@@ -33,5 +33,11 @@
 - Never commit credentials or personal data. Use environment variables or redacted placeholders in examples.
 - If the scanner flags something, resolve before opening a PR; see `.github/scripts/README.md` for allowed exceptions and patterns.
 
+## Hosting Options (beyond GitHub Pages)
+- Cloudflare Pages + Cloudflare DNS: free static hosting; pay only for the domain, auto-SSL, good default.
+- Netlify Free: custom domain + SSL; ~100 GB/month bandwidth and 300 build minutes—watch overages.
+- Vercel Hobby: free personal tier; keep individual assets under 100 MB.
+- Domains: prefer a short .com via Cloudflare Registrar for lowest cost; point nameservers to Cloudflare if using their DNS/CDN.
+
 ## Deployment Notes
 - GitHub Pages auto-deploys on push to `main` via `.github/workflows/deploy.yml`. No additional steps required.
