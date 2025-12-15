@@ -572,12 +572,14 @@
     <footer>
         <div class="container">
             <p>In development</p>
+            <p>Page views: <span id="pageViewCount" aria-live="polite">Loading...</span></p>
         </div>
     </footer>
 
     <script>
         // Configuration
         const NOTIFICATION_EMAIL = 'dmvanmeenen@gmail.com';
+        const PAGE_VIEW_ENDPOINT = 'https://api.countapi.xyz/hit/hyperwave/landing';
         
         // Store reference to the triggering button for focus management
         let triggeringButton = null;
@@ -647,6 +649,23 @@
             document.getElementById('successContent').style.display = 'block';
         }
 
+        function recordPageView() {
+            const pageViewCount = document.getElementById('pageViewCount');
+
+            fetch(PAGE_VIEW_ENDPOINT, { cache: 'no-store' })
+                .then(response => response.json())
+                .then(data => {
+                    if (pageViewCount && typeof data.value === 'number') {
+                        pageViewCount.textContent = data.value.toLocaleString();
+                    }
+                })
+                .catch(() => {
+                    if (pageViewCount) {
+                        pageViewCount.textContent = '—';
+                    }
+                });
+        }
+
         // Set up event listeners when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
             const waitlistButton = document.getElementById('waitlistButton');
@@ -683,6 +702,8 @@
                     closeWaitlistModal();
                 }
             });
+
+            recordPageView();
         });
     </script>
 </body>
