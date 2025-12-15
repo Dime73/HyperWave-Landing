@@ -40,7 +40,7 @@ declare -A PATTERNS=(
     ["Bearer Token"]="[Bb]earer\s+[a-zA-Z0-9_\-\.=]{20,}"
     ["AWS Access Key"]="AKIA[0-9A-Z]{16}"
     ["Private Key"]="-----BEGIN.*PRIVATE KEY-----"
-    ["Generic Secret"]="(secret|password|passwd|pwd|token)[\s]*[=:]\s*['\"]?[a-zA-Z0-9_\-]{16,}"
+    ["Generic Secret"]="(secret|password|passwd|pwd|token)[\s]*[=:]\s*['\"]?[a-zA-Z0-9_\-]{8,}"
     ["Credit Card Pattern"]="[0-9]{4}[-\s]?[0-9]{4}[-\s]?[0-9]{4}[-\s]?[0-9]{4}"
     ["IPv4 Private"]="(10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}|172\.(1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3}|192\.168\.[0-9]{1,3}\.[0-9]{1,3})"
 )
@@ -77,8 +77,8 @@ for file in $FILES; do
             
             # Filter out common false positives
             if [[ "$pattern_name" == "Generic Secret" ]]; then
-                # Skip if it's a comment about passwords or placeholder
-                matches=$(echo "$matches" | grep -viE "(example|placeholder|your_|todo|xxx|password123|secret123)" || true)
+                # Skip if it's clearly a placeholder or example (must have specific markers)
+                matches=$(echo "$matches" | grep -viE "(example|placeholder|your_|YOUR_|<.*>|\{.*\}|REPLACE_ME)" || true)
             fi
             
             if [ -n "$matches" ]; then
