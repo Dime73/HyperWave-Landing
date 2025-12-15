@@ -616,8 +616,21 @@
             emailInput.classList.remove('error');
             emailError.classList.remove('active');
             
-            // TODO: Send email to backend API
-            // Example: fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email }) })
+            // Send email notification via mailto (hidden from user)
+            const subject = encodeURIComponent('New HyperWave Waitlist Signup');
+            const body = encodeURIComponent('New waitlist signup:\n\nEmail: ' + email + '\n\nDate: ' + new Date().toLocaleString());
+            const mailtoLink = 'mailto:dmvanmeenen@gmail.com?subject=' + subject + '&body=' + body;
+            
+            // Create a hidden iframe to trigger mailto without navigation
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = mailtoLink;
+            document.body.appendChild(iframe);
+            
+            // Remove iframe after a short delay
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 1000);
             
             // Show success message
             document.getElementById('submittedEmail').textContent = email;
