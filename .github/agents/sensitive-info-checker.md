@@ -62,8 +62,9 @@ Check for the following types of sensitive information:
 Use the following patterns to detect sensitive information:
 
 ```regex
-# Email addresses (exclude allowed public emails)
-(?i)(?!waitlist@hyperwave\.audio)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}
+# Email addresses (filter out allowed public emails in post-processing)
+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}
+# Note: Filter out waitlist@hyperwave.audio in post-processing
 
 # Phone numbers
 (?:\+?1[-.\s]?)?(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}

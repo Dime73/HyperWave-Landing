@@ -78,7 +78,7 @@ for file in $FILES; do
             # Filter out common false positives
             if [[ "$pattern_name" == "Generic Secret" ]]; then
                 # Skip if it's clearly a placeholder or example (must have specific markers)
-                matches=$(echo "$matches" | grep -viE "(example|placeholder|your_|YOUR_|<.*>|\{.*\}|REPLACE_ME)" || true)
+                matches=$(echo "$matches" | grep -viE "(example|placeholder|your_|YOUR_|<.*>|\\{.*\\}|REPLACE_ME)" || true)
             fi
             
             if [ -n "$matches" ]; then
