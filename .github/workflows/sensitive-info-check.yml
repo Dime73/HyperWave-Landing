@@ -1,0 +1,40 @@
+name: Check for Sensitive Information
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  scan-sensitive-info:
+    name: Scan for Sensitive Information
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Run Sensitive Information Scanner
+        run: |
+          chmod +x .github/scripts/check-sensitive-info.sh
+          .github/scripts/check-sensitive-info.sh
+        shell: bash
+      
+      - name: Summary
+        if: success()
+        run: |
+          echo "✅ No sensitive information detected in the repository."
+          echo ""
+          echo "The following checks were performed:"
+          echo "  • Personally Identifiable Information (PII)"
+          echo "  • API keys and tokens"
+          echo "  • Passwords and secrets"
+          echo "  • Private keys"
+          echo "  • Credit card numbers"
+          echo "  • Private IP addresses"
