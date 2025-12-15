@@ -1,6 +1,6 @@
 // Configuration
 const NOTIFICATION_EMAIL = 'dmvanmeenen@gmail.com';
-const PAGE_VIEW_ENDPOINT = 'https://api.countapi.xyz/hit/hyperwave/landing';
+const PAGE_VIEW_ENDPOINT = 'https://api.counterapi.dev/v1/hyperwave/landing/up';
 
 // Store reference to the triggering button for focus management
 let triggeringButton = null;
@@ -68,8 +68,11 @@ function recordPageView() {
     fetch(PAGE_VIEW_ENDPOINT, { cache: 'no-store' })
         .then(response => response.json())
         .then(data => {
-            if (pageViewCount && typeof data.value === 'number') {
-                pageViewCount.textContent = data.value.toLocaleString();
+            // CounterAPI.dev returns { count: number }
+            // countapi.xyz returned { value: number }
+            const count = data.count || data.value;
+            if (pageViewCount && typeof count === 'number') {
+                pageViewCount.textContent = count.toLocaleString();
             }
         })
         .catch(() => {
