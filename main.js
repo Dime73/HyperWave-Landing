@@ -68,11 +68,8 @@ function recordPageView() {
     fetch(PAGE_VIEW_ENDPOINT, { cache: 'no-store' })
         .then(response => response.json())
         .then(data => {
-            // CounterAPI.dev returns { count: number }
-            // countapi.xyz returned { value: number }
-            const count = data.count || data.value;
-            if (pageViewCount && typeof count === 'number') {
-                pageViewCount.textContent = count.toLocaleString();
+            if (pageViewCount && typeof data.count === 'number') {
+                pageViewCount.textContent = data.count.toLocaleString();
             }
         })
         .catch(() => {
