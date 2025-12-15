@@ -466,17 +466,17 @@
     <header>
         <div class="container">
             <a href="#" class="logo">HyperWave</a>
-            <button class="waitlist-button" onclick="openWaitlistModal()" aria-label="Join the HyperWave waitlist to be notified when the plugin launches">Join Waitlist</button>
+            <button id="waitlistButton" class="waitlist-button" aria-label="Join waitlist">Join Waitlist</button>
         </div>
     </header>
 
-    <div id="waitlistModal" class="modal">
+    <div id="waitlistModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="waitlistModalTitle">
         <div class="modal-content">
-            <button class="close-button" onclick="closeWaitlistModal()" aria-label="Close modal">&times;</button>
+            <button id="closeButton" class="close-button" aria-label="Close modal">&times;</button>
             <div id="formContent">
-                <h2>Join the Waitlist</h2>
+                <h2 id="waitlistModalTitle">Join the Waitlist</h2>
                 <p>Be the first to know when HyperWave launches. Enter your email below and we'll notify you!</p>
-                <form id="waitlistForm" onsubmit="submitWaitlist(event)">
+                <form id="waitlistForm">
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input 
@@ -490,16 +490,16 @@
                         <div class="form-error" id="emailError">Please enter a valid email address</div>
                     </div>
                     <div class="modal-buttons">
-                        <button type="button" class="modal-button secondary" onclick="closeWaitlistModal()">Cancel</button>
+                        <button type="button" id="cancelButton" class="modal-button secondary">Cancel</button>
                         <button type="submit" class="modal-button primary">Join Waitlist</button>
                     </div>
                 </form>
             </div>
             <div id="successContent" class="success-message" style="display: none;">
                 <h2>✓ You're on the list!</h2>
-                <p>Thanks for joining the waitlist. We'll send you an email at <strong id="submittedEmail"></strong> when HyperWave is ready to launch.</p>
+                <p>Thanks for joining the waitlist. You'll be among the first to know when HyperWave is ready to launch.</p>
                 <div class="modal-buttons">
-                    <button class="modal-button primary" onclick="closeWaitlistModal()">Close</button>
+                    <button id="closeSuccessButton" class="modal-button primary">Close</button>
                 </div>
             </div>
         </div>
@@ -576,6 +576,12 @@
     </footer>
 
     <script>
+        // Configuration
+        const NOTIFICATION_EMAIL = 'dmvanmeenen@gmail.com';
+        
+        // Store reference to the triggering button for focus management
+        let triggeringButton = null;
+
         function openWaitlistModal() {
             const modal = document.getElementById('waitlistModal');
             modal.classList.add('active');
@@ -586,14 +592,18 @@
             const modal = document.getElementById('waitlistModal');
             modal.classList.remove('active');
             
-            // Reset form after a brief delay to allow the modal close animation to complete
-            setTimeout(() => {
-                document.getElementById('formContent').style.display = 'block';
-                document.getElementById('successContent').style.display = 'none';
-                document.getElementById('waitlistForm').reset();
-                document.getElementById('email').classList.remove('error');
-                document.getElementById('emailError').classList.remove('active');
-            }, 300);
+            // Immediately reset form and hide error messages
+            document.getElementById('formContent').style.display = 'block';
+            document.getElementById('successContent').style.display = 'none';
+            document.getElementById('waitlistForm').reset();
+            document.getElementById('email').classList.remove('error');
+            document.getElementById('emailError').classList.remove('active');
+            
+            // Return focus to the triggering button
+            if (triggeringButton) {
+                triggeringButton.focus();
+                triggeringButton = null;
+            }
         }
 
         function submitWaitlist(event) {
@@ -603,10 +613,8 @@
             const emailError = document.getElementById('emailError');
             const email = emailInput.value.trim();
             
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (!emailRegex.test(email)) {
+            // Rely on HTML5 validation, but add additional check
+            if (!emailInput.validity.valid) {
                 emailInput.classList.add('error');
                 emailError.classList.add('active');
                 return;
@@ -616,10 +624,10 @@
             emailInput.classList.remove('error');
             emailError.classList.remove('active');
             
-            // Send email notification via mailto (hidden from user)
+            // Send email notification via mailto
             const subject = encodeURIComponent('New HyperWave Waitlist Signup');
             const body = encodeURIComponent('New waitlist signup:\n\nEmail: ' + email + '\n\nDate: ' + new Date().toLocaleString());
-            const mailtoLink = 'mailto:dmvanmeenen@gmail.com?subject=' + subject + '&body=' + body;
+            const mailtoLink = 'mailto:' + NOTIFICATION_EMAIL + '?subject=' + subject + '&body=' + body;
             
             // Create a hidden iframe to trigger mailto without navigation
             const iframe = document.createElement('iframe');
@@ -627,32 +635,54 @@
             iframe.src = mailtoLink;
             document.body.appendChild(iframe);
             
-            // Remove iframe after a short delay
+            // Remove iframe immediately after it's been added
             setTimeout(() => {
-                document.body.removeChild(iframe);
-            }, 1000);
+                if (iframe.parentNode) {
+                    document.body.removeChild(iframe);
+                }
+            }, 100);
             
             // Show success message
-            document.getElementById('submittedEmail').textContent = email;
             document.getElementById('formContent').style.display = 'none';
             document.getElementById('successContent').style.display = 'block';
         }
 
-        // Close modal when clicking outside of it
-        document.getElementById('waitlistModal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeWaitlistModal();
-            }
-        });
+        // Set up event listeners when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const waitlistButton = document.getElementById('waitlistButton');
+            const closeButton = document.getElementById('closeButton');
+            const cancelButton = document.getElementById('cancelButton');
+            const closeSuccessButton = document.getElementById('closeSuccessButton');
+            const waitlistForm = document.getElementById('waitlistForm');
+            const modal = document.getElementById('waitlistModal');
 
-        // Handle escape key to close modal
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modal = document.getElementById('waitlistModal');
-                if (modal.classList.contains('active')) {
+            // Open modal
+            waitlistButton.addEventListener('click', function() {
+                triggeringButton = this;
+                openWaitlistModal();
+            });
+
+            // Close modal buttons
+            closeButton.addEventListener('click', closeWaitlistModal);
+            cancelButton.addEventListener('click', closeWaitlistModal);
+            closeSuccessButton.addEventListener('click', closeWaitlistModal);
+
+            // Form submission
+            waitlistForm.addEventListener('submit', submitWaitlist);
+
+            // Close modal when clicking outside of it
+            modal.addEventListener('click', function(event) {
+                if (event.target === this) {
                     closeWaitlistModal();
                 }
-            }
+            });
+
+            // Handle escape key to close modal (only when modal is active)
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.classList.contains('active')) {
+                    closeWaitlistModal();
+                }
+            });
         });
     </script>
 </body>
