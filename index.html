@@ -572,12 +572,14 @@
     <footer>
         <div class="container">
             <p>In development</p>
+            <p>Page views: <span id="pageViewCount" aria-live="polite">Loading...</span></p>
         </div>
     </footer>
 
     <script>
         // Configuration
         const NOTIFICATION_EMAIL = 'dmvanmeenen@gmail.com';
+        const PAGE_VIEW_ENDPOINT = 'https://api.countapi.xyz/hit/hyperwave/landing';
         
         // Store reference to the triggering button for focus management
         let triggeringButton = null;
@@ -647,6 +649,36 @@
             document.getElementById('successContent').style.display = 'block';
         }
 
+        function recordPageView() {
+            const pageViewCount = document.getElementById('pageViewCount');
+
+            if (!pageViewCount || !PAGE_VIEW_ENDPOINT) {
+                return;
+            }
+
+            const requestUrl = `${PAGE_VIEW_ENDPOINT}?timestamp=${Date.now()}`;
+
+            fetch(requestUrl, { cache: 'no-store', mode: 'cors' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Unexpected status: ${response.status}`);
+                    }
+
+                    return response.json();
+                })
+                .then(data => {
+                    if (typeof data.value === 'number') {
+                        pageViewCount.textContent = data.value.toLocaleString();
+                    } else {
+                        pageViewCount.textContent = 'Tracking unavailable';
+                    }
+                })
+                .catch(error => {
+                    console.warn('Page view tracking unavailable', error);
+                    pageViewCount.textContent = 'Tracking unavailable';
+                });
+        }
+
         // Set up event listeners when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
             const waitlistButton = document.getElementById('waitlistButton');
@@ -683,6 +715,8 @@
                     closeWaitlistModal();
                 }
             });
+
+            recordPageView();
         });
     </script>
 </body>
