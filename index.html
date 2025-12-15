@@ -269,6 +269,157 @@
             padding-top: 70px;
         }
 
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a3a 100%);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            position: relative;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            font-size: 1.75rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 30px;
+            color: #b0b0b0;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 6px;
+            background: #0a0a0a;
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus {
+            border-color: rgba(102, 126, 234, 0.6);
+        }
+
+        .form-group input.error {
+            border-color: #ff4444;
+        }
+
+        .form-error {
+            color: #ff4444;
+            font-size: 0.875rem;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .form-error.active {
+            display: block;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .modal-button {
+            flex: 1;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .modal-button.primary {
+            color: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        .modal-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.6);
+        }
+
+        .modal-button.secondary {
+            color: #b0b0b0;
+            background: #1a1a1a;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .modal-button.secondary:hover {
+            background: #2a1a2a;
+            color: #ffffff;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #888888;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+
+        .close-button:hover {
+            color: #ffffff;
+        }
+
+        .success-message {
+            text-align: center;
+        }
+
+        .success-message h2 {
+            color: #66ff66;
+            margin-bottom: 15px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -315,9 +466,44 @@
     <header>
         <div class="container">
             <a href="#" class="logo">HyperWave</a>
-            <a href="mailto:waitlist@hyperwave.audio?subject=Join%20HyperWave%20Waitlist" class="waitlist-button">Join Waitlist</a>
+            <button id="waitlistButton" class="waitlist-button" aria-label="Join waitlist">Join Waitlist</button>
         </div>
     </header>
+
+    <div id="waitlistModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="waitlistModalTitle">
+        <div class="modal-content">
+            <button id="closeButton" class="close-button" aria-label="Close modal">&times;</button>
+            <div id="formContent">
+                <h2 id="waitlistModalTitle">Join the Waitlist</h2>
+                <p>Be the first to know when HyperWave launches. Enter your email below and we'll notify you!</p>
+                <form id="waitlistForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="your@email.com"
+                            required
+                            aria-required="true"
+                        >
+                        <div class="form-error" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" id="cancelButton" class="modal-button secondary">Cancel</button>
+                        <button type="submit" class="modal-button primary">Join Waitlist</button>
+                    </div>
+                </form>
+            </div>
+            <div id="successContent" class="success-message" style="display: none;">
+                <h2>✓ You're on the list!</h2>
+                <p>Thanks for joining the waitlist. You'll be among the first to know when HyperWave is ready to launch.</p>
+                <div class="modal-buttons">
+                    <button id="closeSuccessButton" class="modal-button primary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <section class="hero">
         <div class="container">
@@ -388,5 +574,116 @@
             <p>In development</p>
         </div>
     </footer>
+
+    <script>
+        // Configuration
+        const NOTIFICATION_EMAIL = 'dmvanmeenen@gmail.com';
+        
+        // Store reference to the triggering button for focus management
+        let triggeringButton = null;
+
+        function openWaitlistModal() {
+            const modal = document.getElementById('waitlistModal');
+            modal.classList.add('active');
+            document.getElementById('email').focus();
+        }
+
+        function closeWaitlistModal() {
+            const modal = document.getElementById('waitlistModal');
+            modal.classList.remove('active');
+            
+            // Immediately reset form and hide error messages
+            document.getElementById('formContent').style.display = 'block';
+            document.getElementById('successContent').style.display = 'none';
+            document.getElementById('waitlistForm').reset();
+            document.getElementById('email').classList.remove('error');
+            document.getElementById('emailError').classList.remove('active');
+            
+            // Return focus to the triggering button
+            if (triggeringButton) {
+                triggeringButton.focus();
+                triggeringButton = null;
+            }
+        }
+
+        function submitWaitlist(event) {
+            event.preventDefault();
+            
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const email = emailInput.value.trim();
+            
+            // Rely on HTML5 validation, but add additional check
+            if (!emailInput.validity.valid) {
+                emailInput.classList.add('error');
+                emailError.classList.add('active');
+                return;
+            }
+            
+            // Remove error styling
+            emailInput.classList.remove('error');
+            emailError.classList.remove('active');
+            
+            // Send email notification via mailto
+            const subject = encodeURIComponent('New HyperWave Waitlist Signup');
+            const body = encodeURIComponent('New waitlist signup:\n\nEmail: ' + email + '\n\nDate: ' + new Date().toLocaleString());
+            const mailtoLink = 'mailto:' + NOTIFICATION_EMAIL + '?subject=' + subject + '&body=' + body;
+            
+            // Create a hidden iframe to trigger mailto without navigation
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = mailtoLink;
+            document.body.appendChild(iframe);
+            
+            // Remove iframe immediately after it's been added
+            setTimeout(() => {
+                if (iframe.parentNode) {
+                    document.body.removeChild(iframe);
+                }
+            }, 100);
+            
+            // Show success message
+            document.getElementById('formContent').style.display = 'none';
+            document.getElementById('successContent').style.display = 'block';
+        }
+
+        // Set up event listeners when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const waitlistButton = document.getElementById('waitlistButton');
+            const closeButton = document.getElementById('closeButton');
+            const cancelButton = document.getElementById('cancelButton');
+            const closeSuccessButton = document.getElementById('closeSuccessButton');
+            const waitlistForm = document.getElementById('waitlistForm');
+            const modal = document.getElementById('waitlistModal');
+
+            // Open modal
+            waitlistButton.addEventListener('click', function() {
+                triggeringButton = this;
+                openWaitlistModal();
+            });
+
+            // Close modal buttons
+            closeButton.addEventListener('click', closeWaitlistModal);
+            cancelButton.addEventListener('click', closeWaitlistModal);
+            closeSuccessButton.addEventListener('click', closeWaitlistModal);
+
+            // Form submission
+            waitlistForm.addEventListener('submit', submitWaitlist);
+
+            // Close modal when clicking outside of it
+            modal.addEventListener('click', function(event) {
+                if (event.target === this) {
+                    closeWaitlistModal();
+                }
+            });
+
+            // Handle escape key to close modal (only when modal is active)
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && modal.classList.contains('active')) {
+                    closeWaitlistModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
