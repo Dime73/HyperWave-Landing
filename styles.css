@@ -192,6 +192,20 @@ p {
     font-size: 0.875rem;
 }
 
+.compatibility-icon {
+    width: 36px;
+    height: 36px;
+    fill: #ffffff;
+}
+
+.platform-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px 0;
+}
+
 .audio-player {
     margin-top: 30px;
     padding: 20px;
