@@ -657,6 +657,25 @@ header .waitlist-button:hover {
     }
 }
 
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .hero::before {
+        animation: none;
+    }
+    
+    .cta-button::before {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
