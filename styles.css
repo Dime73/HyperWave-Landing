@@ -12,6 +12,15 @@ body {
     padding-top: 70px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+#features,
+#sound {
+    scroll-margin-top: 90px;
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;
