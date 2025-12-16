@@ -5,6 +5,13 @@ const PAGE_VIEW_ENDPOINT = 'https://api.counterapi.dev/v1/hyperwave/landing/up';
 // Store reference to the triggering button for focus management
 let triggeringButton = null;
 
+function isLocalEnvironment() {
+    const host = window.location.hostname;
+    return window.location.protocol === 'file:' ||
+        host === 'localhost' ||
+        host === '127.0.0.1';
+}
+
 function openWaitlistModal() {
     const modal = document.getElementById('waitlistModal');
     modal.classList.add('active');
@@ -110,5 +117,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    recordPageView();
+    if (!isLocalEnvironment()) {
+        recordPageView();
+    } else {
+        const pageViewCount = document.getElementById('pageViewCount');
+        if (pageViewCount) {
+            pageViewCount.textContent = 'dev';
+        }
+    }
 });
