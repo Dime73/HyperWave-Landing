@@ -81,6 +81,24 @@ p {
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
+.gumroad-button {
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    text-decoration: none;
+}
+
+.gumroad-button:hover:not(:disabled) {
+    background: #f7f7f7;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.gumroad-button[aria-disabled="true"],
+.gumroad-button:disabled {
+    opacity: 1;
+}
+
 .cta-button[aria-disabled="true"] {
     pointer-events: none;
 }
