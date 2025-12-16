@@ -8,7 +8,7 @@
 - `.github/` — GitHub Actions and scripts. `workflows/deploy.yml` handles Pages deploys; `scripts/check-sensitive-info.sh` scans for secrets; `agents/` holds agent instructions.
 
 ## Local Preview & Builds
-- No build step; serve the root folder directly. Quick preview: `python3 -m http.server 8000` then open `http://localhost:8000`.
+- No build step; serve the root folder directly. Start local preview with `scripts/start-dev.sh` (launches `python3 -m http.server 8000` and opens `http://localhost:8000` in Safari; logs at `/tmp/hyperwave-http.log`). Use this at the start of Codex sessions so the page is always open.
 - If you add tooling (e.g., bundlers), keep the output out of git or document new commands here.
 
 ## Quality Checks
