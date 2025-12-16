@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperWave - Instant Supersaws for Hardstyle & EDM</title>
+    <title>HyperWave - Hard-hitting EDM Leads</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container">
             <a href="#" class="logo">HyperWave</a>
+            <nav class="nav-links" aria-label="Primary">
+                <a href="#features">Features</a>
+                <a href="#sound">Sound</a>
+                <a href="#legal">Legal</a>
+            </nav>
             <button id="waitlistButton" class="waitlist-button" aria-label="Join waitlist">Join Waitlist</button>
         </div>
     </header>
@@ -51,19 +56,43 @@
     
     <section class="hero">
         <div class="container">
-            <h1>HyperWave</h1>
-            <p class="tagline">Instant supersaws for hardstyle and EDM — no menu diving.</p>
-            <img src="synth.png" alt="Screenshot of HyperWave plugin interface showing supersaw controls">
+            <h1>Massive unison leads for harder styles—and beyond.</h1>
+            <p class="tagline">HyperWave is a modern supersaw synth built for aggressive, wide EDM leads, plucks, and basses—fast results without the clutter.</p>
+            <img src="synth.png" alt="Screenshot of HyperWave plugin interface showing supersaw-style unison controls">
             <div>
                 <button class="cta-button" disabled aria-label="Plugin coming soon, not yet available for download">Coming soon</button>
             </div>
         </div>
     </section>
 
-    <section class="sound-section">
+    <section id="features" class="features-section why-section">
+        <div class="container">
+            <h2>Why HyperWave</h2>
+            <ul>
+                <li>
+                    <strong>Supersaw-style unison oscillator</strong>
+                    <span>Stacked unison saws with controllable detune, spread, and weight for huge leads in seconds.</span>
+                </li>
+                <li>
+                    <strong>Mix-ready presence</strong>
+                    <span>Designed to cut through dense kicks and percussion so your hooks stay upfront in the mix.</span>
+                </li>
+                <li>
+                    <strong>Fast workflow</strong>
+                    <span>Minimal controls, instant feedback—dial in width, grit, and movement without menu diving.</span>
+                </li>
+                <li>
+                    <strong>EDM-first, genre-flexible</strong>
+                    <span>Perfect for harder styles like hardstyle and rawstyle, while staying versatile for trance, big room, hands-up, and modern EDM.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="sound" class="sound-section">
         <div class="container">
             <h2>Sound</h2>
-            <p>HyperWave delivers thick, professional supersaws with a streamlined interface designed for speed. No complexity, no distractions — just massive, hardstyle-ready sound at your fingertips.</p>
+            <p>HyperWave delivers thick, aggressive stacks with a classic hardware-style unison character—streamlined for producers who need mix-ready leads fast.</p>
             <div class="audio-player">
                 <audio controls>
                     <source src="HyperWaveV3.mp3" type="audio/mpeg">
@@ -73,27 +102,10 @@
         </div>
     </section>
 
-    <section class="why-section">
+    <section class="workflow-section">
         <div class="container">
-            <h2>Why HyperWave</h2>
-            <ul>
-                <li>
-                    <strong>Instant Results</strong>
-                    <span>Load the plugin and start making music immediately — no preset hunting required.</span>
-                </li>
-                <li>
-                    <strong>Thick, Professional Sound</strong>
-                    <span>Get rich, high-quality supersaws that cut through your mix every time.</span>
-                </li>
-                <li>
-                    <strong>Minimal Controls</strong>
-                    <span>Focus on creativity instead of tweaking — everything you need, nothing you don't.</span>
-                </li>
-                <li>
-                    <strong>Built for Hardstyle & EDM</strong>
-                    <span>Optimized specifically for the genres you produce, with sound character that fits right in.</span>
-                </li>
-            </ul>
+            <h2>Built for producers who move fast</h2>
+            <p>HyperWave keeps the focus on the sound: wide stereo unison, punchy envelopes, and tone shaping that stays upfront when layered with big drums. Create signature leads, plucks, and basslines for festival drops and late-night studio sessions alike.</p>
         </div>
     </section>
 
@@ -113,10 +125,20 @@
         </div>
     </section>
 
+    <section id="legal" class="legal-section">
+        <div class="container">
+            <h2>Legal</h2>
+            <p>HyperWave is an independent software instrument developed by HyperWave Audio. References to sound characteristics are descriptive only. HyperWave is not affiliated with, endorsed by, sponsored by, or otherwise connected to any third-party hardware or software manufacturers. All trademarks are the property of their respective owners.</p>
+            <p>HyperWave draws inspiration from classic unison lead aesthetics, but it is an original design and does not attempt to model any specific third-party product.</p>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>In development</p>
             <p>Page views: <span id="pageViewCount" aria-live="polite">Loading...</span></p>
+            <p class="disclaimer">HyperWave is an independent product by HyperWave Audio. It is not affiliated with, endorsed by, or connected to any other brand or manufacturer. All third-party trademarks are the property of their respective owners.</p>
+            <p><a href="#legal">Legal</a></p>
         </div>
     </footer>
     <script src="main.js"></script>
