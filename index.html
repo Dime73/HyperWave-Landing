@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperWave - Hard-hitting EDM Leads</title>
+    <meta name="description" content="Explore HyperWave Audio: Hyperwave supersaw synthesis and Prism stereo shaping. Independent instruments and effects for your next track.">
+    <title>HyperWave Audio — Instruments &amp; Effects</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="#" class="logo">HyperWave</a>
-            <button id="waitlistButton" class="waitlist-button" aria-label="Join waitlist">Join Waitlist</button>
-        </div>
-    </header>
-
+    <a class="skip-link" href="#plugins">Skip to plugins</a>
+    <header><div class="container">
+        <a href="#" class="logo">HyperWave <span>Audio</span></a>
+        <nav aria-label="Main navigation"><a href="#plugins">Plugins</a><a href="#sound">Listen</a></nav>
+        <button id="waitlistButton" class="waitlist-button">Get release updates</button>
+    </div></header>
     <div id="waitlistModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="waitlistModalTitle">
         <div class="modal-content">
             <button id="closeButton" class="close-button" aria-label="Close modal">&times;</button>
             <div id="formContent">
                 <h2 id="waitlistModalTitle">Join the Waitlist</h2>
-                <p>Be the first to know when HyperWave launches. Enter your email below and we'll notify you!</p>
+                <p>Be the first to know when our plugins launch. Enter your email below and we'll notify you!</p>
                 <form id="waitlistForm">
                     <div class="form-group">
                         <label for="email">Email Address</label>
@@ -27,7 +27,7 @@
                             type="email" 
                             id="email" 
                             name="email" 
-                            placeholder="your@email.com"
+                            placeholder="Your email address"
                             required
                             aria-required="true"
                         >
@@ -40,8 +40,8 @@
                 </form>
             </div>
             <div id="successContent" class="success-message" style="display: none;">
-                <h2>✓ You're on the list!</h2>
-                <p>Thanks for joining the waitlist. You'll be among the first to know when HyperWave is ready to launch.</p>
+                <h2>Finish in your email app</h2>
+                <p>Send the prepared email to request release updates. Opening your email app does not submit your request automatically.</p>
                 <div class="modal-buttons">
                     <button id="closeSuccessButton" class="modal-button primary">Close</button>
                 </div>
@@ -49,92 +49,29 @@
         </div>
     </div>
     
-    <section class="hero">
-        <div class="container">
-            <h1>Hardstyle leads, fast.</h1>
-            <p class="tagline">HyperWave is a supersaw synth for punchy EDM hooks without the clutter.</p>
-            <img src="synth.png" alt="Screenshot of HyperWave plugin interface showing supersaw-style unison controls">
-            <div>
-                <button class="cta-button" disabled aria-label="Plugin soon available on Gumroad, not yet ready for download">Soon available on Gumroad</button>
-            </div>
-        </div>
-    </section>
 
-    <section id="sound" class="sound-section">
-        <div class="container">
-            <h2>Sound</h2>
-            <p>HyperWave delivers thick, aggressive stacks with a classic hardware-style unison character—streamlined for producers who need mix-ready leads fast.</p>
-            <div class="audio-player">
-                <audio controls>
-                    <source src="HyperWaveV3.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="features-section why-section">
-        <div class="container">
-            <h2>Why HyperWave</h2>
-            <ul>
-                <li>
-                    <strong>Supersaw-style unison oscillator</strong>
-                    <span>Stacked unison saws with controllable detune, spread, and weight for huge leads in seconds.</span>
-                </li>
-                <li>
-                    <strong>Mix-ready presence</strong>
-                    <span>Designed to cut through dense kicks and percussion so your hooks stay upfront in the mix.</span>
-                </li>
-                <li>
-                    <strong>Fast workflow</strong>
-                    <span>Minimal controls, instant feedback—dial in width, grit, and movement without menu diving.</span>
-                </li>
-                <li>
-                    <strong>EDM-first, genre-flexible</strong>
-                    <span>Perfect for harder styles like hardstyle and rawstyle, while staying versatile for trance, big room, hands-up, and modern EDM.</span>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="workflow-section">
-        <div class="container">
-            <h2>Built for producers who move fast</h2>
-            <p>HyperWave keeps the focus on the sound: wide stereo unison, punchy envelopes, and tone shaping that stays upfront when layered with big drums. Create signature leads, plucks, and basslines for festival drops and late-night studio sessions alike.</p>
-        </div>
-    </section>
-
-    <section class="compatibility-section">
-        <div class="container">
-            <h2>Compatibility</h2>
-            <div class="compatibility-grid">
-                <div class="compatibility-item">
-                    <strong>Platform</strong>
-                    <div class="platform-icons" aria-label="Supported platforms">
-                        <svg class="compatibility-icon" viewBox="0 0 64 64" role="img" aria-label="Apple logo">
-                            <path d="M46.5 34.2c0-6.2 5-9.2 5.2-9.4-2.8-4-7.1-4.5-8.6-4.6-3.7-.4-7.1 2.1-8.9 2.1-1.9 0-4.7-2-7.7-1.9-4 0-7.7 2.3-9.8 5.8-4.2 7.3-1.1 18.1 3 24 2 2.9 4.3 6.1 7.4 6 3-.1 4.1-1.9 7.6-1.9 3.5 0 4.5 1.9 7.6 1.8 3.2-.1 5.2-2.9 7.2-5.8 2.3-3.4 3.2-6.7 3.3-6.9-.1 0-6.4-2.5-6.5-9.2zM40.8 14.3c1.6-1.9 2.7-4.5 2.4-7.1-2.3.1-5 1.6-6.6 3.5-1.4 1.7-2.8 4.4-2.5 7 .3.1 2.9.2 6.7-3.4z"/>
-                        </svg>
-                        <svg class="compatibility-icon" viewBox="0 0 64 64" role="img" aria-label="Windows logo">
-                            <path d="M4 9l24-3.6v23.2H4V9zm28-4.2L60 2v26.6H32V4.8zM4 35h24v22.6L4 54.4V35zm28 0h28v27.2l-28-4.2V35z"/>
-                        </svg>
-                    </div>
-                    <span>macOS & Windows</span>
-                </div>
-                <div class="compatibility-item">
-                    <strong>Formats</strong>
-                    <span>AU, VST3</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>In development</p>
-            <p>Page views: <span id="pageViewCount" aria-live="polite">Loading...</span></p>
-            <p class="disclaimer">HyperWave is an independent product by HyperWave Audio. It is not affiliated with, endorsed by, or connected to any other brand or manufacturer. All third-party trademarks are the property of their respective owners.</p>
-        </div>
-    </footer>
+    <main>
+        <section class="hero"><div class="container">
+            <p class="eyebrow">Independent instruments &amp; effects</p>
+            <h1>Find your sound.<br><span>Give it space.</span></h1>
+            <p class="tagline">From stacked supersaws to a wider stereo field. Focused plugins that keep you making music.</p>
+            <a class="text-link" href="#plugins">Explore the plugins ↓</a>
+        </div></section>
+        <section id="plugins" class="plugins-section"><div class="container">
+            <div class="section-heading"><h2>Two ways to shape your sound.</h2><span>In development</span></div>
+            <article class="product" id="hyperwave">
+                <div class="product-copy"><p class="eyebrow">01 / Instrument</p><h3>Hyperwave</h3><p class="product-tagline">Big leads. Small learning curve.</p><p>A supersaw synth for punchy EDM hooks, wide unison stacks and quick sound design.</p><ul><li>Detune, density and stereo width</li><li>Filter shaping, drive and modulation</li><li>Hands-on amp and filter envelopes</li></ul><p class="formats">macOS &amp; Windows · AU / VST3</p><a class="text-link" href="#sound">Hear Hyperwave ↓</a></div>
+                <figure><a href="hyperwave.png" aria-label="View full-size Hyperwave screenshot"><img src="hyperwave.png" width="960" height="620" alt="Hyperwave Studio Console interface with oscillator, filter, motion and envelope controls above a keyboard"></a><figcaption>Hyperwave / Studio Console development preview</figcaption></figure>
+            </article>
+            <article class="product prism" id="prism">
+                <div class="product-copy"><p class="eyebrow">02 / Effect</p><h3>Prism</h3><p class="product-tagline">Mono in. Space out.</p><p>Give mono synths and arpeggios a stereo field with width, diffusion and gentle movement.</p><ul><li>Stereo synthesis with Bass Focus</li><li>Width and near/far depth shaping</li><li>Live stereoscope and mono audition</li></ul><p class="formats">macOS, Windows &amp; Linux · AU / VST3*</p><p class="availability">In development · Release details to come</p></div>
+                <figure><a href="prism.png" aria-label="View full-size Prism development screenshot"><img src="prism.png" width="900" height="720" loading="lazy" alt="Prism development interface showing a live stereoscope, mono check and width, diffusion, motion, rate, bass focus and output controls"></a><figcaption>Prism / Earlier development preview — current layout may differ</figcaption></figure>
+            </article>
+            <p class="format-note">*AU on macOS. VST3 on supported platforms. Prism is under active development; final release requirements will be published with the downloads.</p>
+        </div></section>
+        <section id="sound" class="sound-section"><div class="container sound-layout"><div><p class="eyebrow">Listen / Hyperwave</p><h2>Hear the supersaws.</h2><p>A taste of Hyperwave's stacked unison character.</p></div><div class="audio-player"><label for="hyperwave-demo">Hyperwave demo</label><audio id="hyperwave-demo" controls preload="none" src="HyperWaveV3.mp3">Your browser does not support audio. <a href="HyperWaveV3.mp3">Download the demo</a>.</audio></div></div></section>
+    </main>
+    <footer><div class="container"><div class="footer-top"><a class="logo" href="#">HyperWave Audio</a><p>Instruments &amp; effects. Made for making music.</p></div><p>In development · Page views: <span id="pageViewCount">Loading…</span></p><p class="disclaimer">Hyperwave and Prism are independent products by HyperWave Audio. Not affiliated with or endorsed by any other brand or manufacturer. Third-party trademarks belong to their respective owners.</p></div></footer>
     <script src="main.js"></script>
 </body>
 </html>

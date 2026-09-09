@@ -518,3 +518,36 @@ header .waitlist-button:hover {
         font-size: 0.85rem;
     }
 }
+
+/* Shared instrument and effect catalog */
+body { background: #0c0c13; padding-top: 84px; }
+.container { max-width: 1240px; padding: 0 32px; }
+header { background: rgba(12,12,19,.96); }
+header .logo { color: #fff; background: none; -webkit-text-fill-color: initial; letter-spacing: -.04em; }
+.logo span { color: #b5a5f5; font-weight: 400; }
+nav { display: flex; gap: 28px; } nav a { color: #c7c3d7; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, input:focus-visible, audio:focus-visible { outline: 3px solid #c3b3ff; outline-offset: 5px; }
+.skip-link { position: fixed; top: -80px; left: 16px; z-index: 3000; background: #fff; color: #111; padding: 12px; }.skip-link:focus { top: 10px; }
+.hero { text-align: left; padding: 84px 0 64px; background: radial-gradient(ellipse at 85% 0%, #251b40, transparent 65%); }
+.eyebrow { font-size: .875rem; text-transform: uppercase; letter-spacing: .15em; color: #b5a5f5; margin-bottom: 20px; }
+h1 { font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.06; letter-spacing: -.055em; color: #fff; background: none; -webkit-text-fill-color: initial; margin-bottom: 28px; }
+h1 span { color: #b5a5f5; }
+.hero .tagline { max-width: 650px; font-size: 1.25rem; color: #bcb9c8; margin-bottom: 28px; }
+.text-link { color: #d3c6ff; font-size: 1rem; text-underline-offset: 7px; }
+.plugins-section { padding: 32px 0 64px; }
+.section-heading { display: flex; justify-content: space-between; gap: 24px; align-items: baseline; padding-bottom: 28px; border-bottom: 1px solid #34303f; }
+.section-heading h2 { font-size: 1.5rem; margin: 0; letter-spacing: -.025em; }.section-heading span, .availability { color: #b8b3c5; font-size: .875rem; }
+.product { display: grid; grid-template-columns: .85fr 1.5fr; gap: 48px; align-items: center; padding: 56px 0; border-bottom: 1px solid #34303f; scroll-margin-top: 110px; }
+h3 { font-size: 3rem; letter-spacing: -.04em; line-height: 1.1; margin-bottom: 16px; color: white; }
+.product-tagline { color: #e3ddee; font-size: 1.25rem; }.product-copy>p:not(.eyebrow):not(.product-tagline) { font-size: 1rem; }
+.product ul { padding-left: 18px; color: #bcb9c8; margin-bottom: 24px; } .product li { margin-bottom: 6px; }
+.product .formats { font-size: .875rem; color: #c9c3d9; }.product figure { min-width: 0; margin: 0; }.product img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid #494051; box-shadow: 0 20px 60px #0005; }
+figcaption { color: #a6a0b4; font-size: .8125rem; margin-top: 14px; }.prism .eyebrow { color: #78e2d5; }
+.format-note { font-size: .875rem; max-width: 850px; margin-top: 24px; }
+.sound-section { background: #171320; border-top: 1px solid #30283e; }.sound-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }.sound-section h2 { margin-bottom: 16px; }.audio-player { margin: 0; background: #211b30; }.audio-player label { display: block; margin-bottom: 16px; }
+footer { text-align: left; }.footer-top { display: flex; justify-content: space-between; gap: 24px; margin-bottom: 24px; }.footer-top .logo { font-weight: 700; font-size: 1.25rem; }.disclaimer { max-width: 850px; font-size: .875rem; }
+.modal-content { max-height: 90dvh; overflow: auto; }.close-button { width: 44px; height: 44px; top: 8px; right: 8px; }
+#plugins, #sound { scroll-margin-top: 100px; }
+@media(max-width: 800px) { .container { padding: 0 22px; } nav { display: none; } .hero { padding: 56px 0 40px; } .product { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }.product-copy { max-width: 580px; } .section-heading { flex-direction: column; gap: 12px; } .sound-layout { grid-template-columns: 1fr; gap: 18px; } .footer-top { flex-direction: column; gap: 12px; } h3 { font-size: 2.5rem; } header .waitlist-button { padding: 12px; font-size: .875rem; } header .logo { font-size: 1.1rem; } .modal-content { padding: 36px 24px; } }
+@media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }

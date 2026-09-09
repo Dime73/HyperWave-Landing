@@ -1,5 +1,5 @@
 // Configuration
-const NOTIFICATION_EMAIL = 'dmvanmeenen@gmail.com';
+const NOTIFICATION_EMAIL = 'waitlist@hyperwave.audio';
 const PAGE_VIEW_ENDPOINT = 'https://api.counterapi.dev/v1/hyperwave/landing/up';
 
 // Store reference to the triggering button for focus management
@@ -15,12 +15,18 @@ function isLocalEnvironment() {
 function openWaitlistModal() {
     const modal = document.getElementById('waitlistModal');
     modal.classList.add('active');
+    document.querySelector('main').inert = true;
+    document.querySelector('header').inert = true;
+    document.querySelector('footer').inert = true;
     document.getElementById('email').focus();
 }
 
 function closeWaitlistModal() {
     const modal = document.getElementById('waitlistModal');
     modal.classList.remove('active');
+    document.querySelector('main').inert = false;
+    document.querySelector('header').inert = false;
+    document.querySelector('footer').inert = false;
 
     document.getElementById('formContent').style.display = 'block';
     document.getElementById('successContent').style.display = 'none';
@@ -50,7 +56,7 @@ function submitWaitlist(event) {
     emailInput.classList.remove('error');
     emailError.classList.remove('active');
 
-    const subject = encodeURIComponent('New HyperWave Waitlist Signup');
+    const subject = encodeURIComponent('HyperWave Audio release updates');
     const body = encodeURIComponent('New waitlist signup:\n\nEmail: ' + email + '\n\nDate: ' + new Date().toLocaleString());
     const mailtoLink = 'mailto:' + NOTIFICATION_EMAIL + '?subject=' + subject + '&body=' + body;
 
